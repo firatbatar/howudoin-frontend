@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Text, View, StyleSheet, Pressable, TextInput } from "react-native";
 import Config from "./config"
+import { router } from "expo-router";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -25,7 +26,15 @@ export default function Register() {
     fetch(Config.API_URL + "/register", requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        console.log(result);
+        try {
+          const data = JSON.parse(result);
+          alert(`User ${data.name} ${data.lastname} registered successfully`);
+          router.replace("/");
+        } catch (error) {
+          console.error(error);
+          alert(`Error: ${error}`);
+          return;
+        }
       })
       .catch((error) => console.error(error));
   }
