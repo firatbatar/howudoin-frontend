@@ -1,45 +1,10 @@
-import { Text, View, StyleSheet, Pressable } from "react-native";
-import { Link } from "expo-router";
+import { Redirect } from "expo-router";
+import Config from "./config";
 
 export default function Index() {
-  return (
-    <View style={styles.container}>
-      <View>
-
-        <Link href="/login" asChild>
-          <Pressable style={styles.btn}>
-            <Text>Login</Text>
-          </Pressable>
-        </Link>
-
-        <Link href="/register" asChild>
-          <Pressable style={styles.btn}>
-            <Text>Register</Text>
-          </Pressable>
-        </Link>
-      </View>
-    </View> 
-  );
+  if (!Config.token) {
+    return <Redirect href="/login" />;
+  }
+  
+  return <Redirect href="/(tabs)/friends" />
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  btn: {
-    padding: 10,
-    backgroundColor: "lightgreen",
-    color: "black",
-    
-    borderWidth: 2,
-    borderRadius: 5,
-    margin: 10,
-
-    textAlign: "center",
-    alignItems: "center",
-
-    width: 200,
-  },
-});
