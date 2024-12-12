@@ -1,24 +1,91 @@
-import { Text, View, StyleSheet } from "react-native";
-import { Redirect } from "expo-router";
+import { Text, View, StyleSheet, ScrollView, Pressable } from "react-native";
+import { Redirect, useFocusEffect } from "expo-router";
 import Config from "../config"
+import { Friend } from "@/components/friend";
+import { useCallback, useState } from "react";
+
+type FriendObject = {
+  email: string;
+  name: string;
+  lastName: string;
+  avatar: string;
+};
 
 export default function Friends() {
+  const [friends, setFriends] = useState<FriendObject[]>([]);
+
+  function getFriends() {
+    const getFriendsRequestOptions = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${Config.token}`,
+      }
+    };
+  
+    fetch(`${Config.API_URL}/friends`, getFriendsRequestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status !== "SUCCESS") {
+          console.error(data.message);
+          return null;
+        }
+        
+        setFriends([]);
+        for (let i = 0; i < data.data.length; i++) {
+          const friend = data.data[i];
+          setFriends(friends => [...friends, {
+            email: friend.email,
+            name: friend.name,
+            lastName: friend.lastname,
+            avatar: '',
+          }]);
+        }
+      })
+      .catch((error) => console.error(error));
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      getFriends();
+
+      return () => {};
+    }, [])
+  );
+
+
   if (!Config.token) {
     return <Redirect href="/login" />;
   }
 
   return (
-    <View style={styles.container}>
-        <Text style={styles.title}>Friends</Text>
-    </View>
+    <ScrollView style={styles.container}>
+
+
+
+
+      {friends.map((friend) => (
+        <Pressable key={friend.email} onPress={() => {}}>
+          <Friend
+            key={friend.email}
+            name={friend.name}
+            lastName={friend.lastName}
+            avatar={friend.avatar}
+          />
+        </Pressable>
+      ))}
+
+
+
+
+
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: "column",
+    gap: 10,
   },
   btn: {
     padding: 10,
