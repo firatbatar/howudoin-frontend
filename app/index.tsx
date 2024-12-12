@@ -1,23 +1,15 @@
-import { Text, View, StyleSheet, Pressable } from "react-native";
-import { Link } from "expo-router";
+import { Text, View, StyleSheet } from "react-native";
+import { Redirect } from "expo-router";
+import Config from "./config";
 
 export default function Index() {
+  if (!Config.token) {
+    return <Redirect href="/login" />;
+  }
+  
   return (
     <View style={styles.container}>
-      <View>
-
-        <Link href="/login" asChild>
-          <Pressable style={styles.btn}>
-            <Text>Login</Text>
-          </Pressable>
-        </Link>
-
-        <Link href="/register" asChild>
-          <Pressable style={styles.btn}>
-            <Text>Register</Text>
-          </Pressable>
-        </Link>
-      </View>
+        <Text style={styles.title}>Howudoin Home</Text>
     </View> 
   );
 }
@@ -41,5 +33,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
 
     width: 200,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
   },
 });

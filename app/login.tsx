@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Text, View, StyleSheet, Pressable, TextInput } from "react-native";
+import { useRouter, Link } from "expo-router";
 import Config from "./config"
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const router = useRouter();
 
   function handleLogin() {
     const requestOptions = {
@@ -19,42 +22,54 @@ export default function Login() {
     }
 
     fetch(Config.API_URL + "/login", requestOptions)
-      .then((response) => response.text())
+      .then((response) => (response.text()))
       .then((result) => {
-        console.log(result);
+        try {
+          const data = JSON.parse(result);
+          Config.token = data.token;
+          router.replace("/");
+        } catch (error) {
+          console.error(error);
+          alert("Invalid email or password");
+          return;
+        }
       })
       .catch((error) => console.error(error));
   }
 
   return (
     <View style={styles.container}>
-
-      <Text style={styles.title}>Register</Text>
-
       <View 
         style={{
           justifyContent: "center",
           alignItems: "center"
         }}
       >
-          <TextInput
-            style={styles.input} 
-            placeholder="Email"
-            value={email}
-            onChangeText={setEmail}
-          />
-          <TextInput 
-            style={styles.input}
-            placeholder="Password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={true}
-          />
+        <Text style={styles.title}>Login</Text>
+
+        <TextInput
+          style={styles.input} 
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TextInput 
+          style={styles.input}
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
+        />
 
         <Pressable style={styles.btn} onPress={handleLogin}>
           <Text>Login</Text>
         </Pressable>
       </View>
+
+        <Text style={{margin: 10}}>
+          Not signed up yet? <Link style={styles.link} href="/register"><Text>Register</Text></Link> here!
+        </Text>
+
     </View>
   );
 }
@@ -93,5 +108,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
+  },
+  link: {
+    color: "blue",
   },
 });
