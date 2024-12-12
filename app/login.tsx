@@ -67,9 +67,8 @@ export default function Login() {
       </View>
 
         <Text style={{margin: 10}}>
-          Not signed up yet? <Link style={styles.link} href="/register"><Text>Register</Text></Link> here!
+          Not signed up yet? Register <Link style={styles.link} href="/register"><Text>here</Text></Link>!
         </Text>
-
     </View>
   );
 }
