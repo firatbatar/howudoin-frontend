@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Pressable, TextInput } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { Redirect } from "expo-router";
 import Config from "../config"
 
