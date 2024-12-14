@@ -1,6 +1,6 @@
-import { Pressable, Text, TextInput, View, StyleSheet } from 'react-native';
+import { Pressable, Text, TextInput, View } from 'react-native';
 import { useState, useCallback } from 'react';
-import Config from '@/components/common/config';
+import Config, { commonStyles } from '@/components/common/config';
 import { useFocusEffect } from 'expo-router';
 import { RequestList } from '@/components/requestList';
 
@@ -101,8 +101,13 @@ export default function FriendRequest() {
   }, []));
 
   return (
-    <View style={styles.container}>
-
+    <View
+      style={{
+        flexDirection: 'column',
+        gap: 10,
+        height: '100%',
+      }}
+    >
       <View
         style={{
           justifyContent: 'center',
@@ -113,14 +118,14 @@ export default function FriendRequest() {
           marginTop: 20,
         }}
       >
-        <Text style={styles.title} >Add Friend</Text>
+        <Text style={commonStyles.title} >Add Friend</Text>
         <TextInput
           placeholder='Email'
-          style={styles.input}
+          style={commonStyles.input}
           value={email}
           onChangeText={setEmail}
         />
-        <Pressable style={styles.btn} onPress={sendFriendRequest}>
+        <Pressable style={commonStyles.btn} onPress={sendFriendRequest}>
           <Text>Send</Text>
         </Pressable>
       </View>
@@ -142,40 +147,3 @@ export default function FriendRequest() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    gap: 10,
-    height: '100%',
-  },
-  input: {
-    height: 50,
-    width: 300,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 20,
-  },
-  btn: {
-    padding: 10,
-    backgroundColor: 'lightgreen',
-    color: 'black',
-
-    borderWidth: 2,
-    borderRadius: 5,
-    margin: 10,
-
-    textAlign: 'center',
-    alignItems: 'center',
-
-    width: 200,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-});
