@@ -1,6 +1,6 @@
 import { Pressable, Text, TextInput, View, StyleSheet } from 'react-native';
 import { useState, useCallback } from 'react';
-import Config from '@/app/config';
+import Config from '@/components/common/config';
 import { useFocusEffect } from 'expo-router';
 import { RequestList } from '@/components/requestList';
 

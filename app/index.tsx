@@ -1,5 +1,5 @@
 import { Redirect } from 'expo-router';
-import Config from '@/app/config';
+import Config from '@/components/common/config';
 
 export default function Index() {
   if (!Config.token) {

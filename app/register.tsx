@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Text, View, StyleSheet, Pressable, TextInput } from 'react-native';
 import { router } from 'expo-router';
-import Config from '@/app/config';
+import Config from '@/components/common/config';
 
 export default function Register() {
   const [name, setName] = useState('');

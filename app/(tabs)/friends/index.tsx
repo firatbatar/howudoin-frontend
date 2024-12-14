@@ -3,7 +3,7 @@ import { Redirect, useFocusEffect, Link } from 'expo-router';
 import { Friend } from '@/components/friend';
 import { useCallback, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-import Config from '@/app/config';
+import Config from '@/components/common/config';
 
 type FriendObject = {
   email: string;
