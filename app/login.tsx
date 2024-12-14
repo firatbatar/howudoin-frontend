@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Text, View, StyleSheet, Pressable, TextInput } from 'react-native';
+import { Text, View, Pressable, TextInput } from 'react-native';
 import { useRouter, Link } from 'expo-router';
-import Config from '@/app/config';
+import Config from '@/components/common/config';
+import { commonStyles } from '@/components/common/config';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -38,77 +39,43 @@ export default function Login() {
   }
 
   return (
-    <View style={styles.container}>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <View
         style={{
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <Text style={styles.title}>Login</Text>
+        <Text style={commonStyles.title}>Login</Text>
 
         <TextInput
-          style={styles.input}
+          style={commonStyles.input}
           placeholder='Email'
           value={email}
           onChangeText={setEmail}
         />
         <TextInput
-          style={styles.input}
+          style={commonStyles.input}
           placeholder='Password'
           value={password}
           onChangeText={setPassword}
           secureTextEntry={true}
         />
 
-        <Pressable style={styles.btn} onPress={handleLogin}>
+        <Pressable style={commonStyles.btn} onPress={handleLogin}>
           <Text>Login</Text>
         </Pressable>
       </View>
 
-      <Text style={{margin: 10}}>
-        Not signed up yet? Register <Link style={styles.link} href='/register'><Text>here</Text></Link>!
+      <Text style={{margin: 10, textAlign: 'center'}}>
+        Not signed up yet? Register <Link style={commonStyles.link} href='/register'><Text>here</Text></Link>!
       </Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  btn: {
-    padding: 10,
-    backgroundColor: 'lightgreen',
-    color: 'black',
-
-    borderWidth: 2,
-    borderRadius: 5,
-    margin: 10,
-
-    textAlign: 'center',
-    alignItems: 'center',
-
-    width: 200,
-  },
-  input: {
-    height: 50,
-    width: 300,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  link: {
-    color: 'blue',
-  },
-});

@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
+import { commonStyles } from '@/components/common/config';
 
 type FriendProps = {
     name: string;
@@ -10,11 +11,11 @@ export function Friend({ name, lastName, avatar }: FriendProps) {
   return (
     <View style={styles.friend}>
       <Image
-        style={styles.image}
+        style={commonStyles.image}
         source={require('../assets/images/react-logo.png')}
       />
 
-      <View style={styles.text}>
+      <View style={commonStyles.text}>
         <Text style={styles.name}>{name} {lastName}</Text>
 
         <View style={styles.info}>
@@ -33,18 +34,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     margin: 10,
-  },
-  image: {
-    width: 50,
-    height: 50,
-    margin: 10,
-    borderRadius: 50,
-  },
-  text: {
-    flexDirection: 'column',
-    height: 70,
-    justifyContent: 'space-around',
-    flex: 1,
   },
   name: {
     fontSize: 20,

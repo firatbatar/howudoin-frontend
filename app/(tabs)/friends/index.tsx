@@ -3,14 +3,7 @@ import { Redirect, useFocusEffect, Link } from 'expo-router';
 import { Friend } from '@/components/friend';
 import { useCallback, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-import Config from '@/app/config';
-
-type FriendObject = {
-  email: string;
-  name: string;
-  lastName: string;
-  avatar: string;
-};
+import Config, { commonStyles, FriendObject } from '@/components/common/config';
 
 export default function Friends() {
   const [friends, setFriends] = useState<FriendObject[]>([]);
@@ -55,7 +48,13 @@ export default function Friends() {
 
   return (
     <View>
-      <ScrollView style={styles.container}>
+      <ScrollView
+        style={{
+          flexDirection: 'column',
+          gap: 10,
+          height: '100%',
+        }}
+      >
         {friends.map((friend) => (
           <Pressable key={friend.email} onPress={() => {}}>
             <Friend
@@ -71,7 +70,7 @@ export default function Friends() {
       <Link
         href='/(tabs)/friends/requests'
         asChild
-        style={[styles.float, styles.btn, {width: 'auto'}]}
+        style={[styles.float, commonStyles.btn, {width: 'auto'}]}
       >
         <MaterialIcons
           name='person-add'
@@ -84,47 +83,10 @@ export default function Friends() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    gap: 10,
-    height: '100%',
-  },
-  btn: {
-    padding: 10,
-    backgroundColor: 'lightgreen',
-    color: 'black',
-
-    borderWidth: 2,
-    borderRadius: 5,
-    margin: 10,
-
-    textAlign: 'center',
-    alignItems: 'center',
-
-    width: 200,
-  },
   float: {
     position: 'absolute',
     bottom: 0,
     right: 0,
     margin: 10,
-  },
-  input: {
-    height: 50,
-    width: 300,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  link: {
-    color: 'blue',
   },
 });
