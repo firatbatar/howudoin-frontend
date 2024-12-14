@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet } from "react-native";
 import { Redirect } from "expo-router";
-import Config from "../config"
+import Config from "@/app/config";
 
 export default function Groups() {
   if (!Config.token) {

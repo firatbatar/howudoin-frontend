@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Text, View, StyleSheet, Pressable, TextInput } from "react-native";
 import { useRouter, Link } from "expo-router";
-import Config from "./config"
+import Config from "@/app/config";
 
 export default function Login() {
   const [email, setEmail] = useState("");

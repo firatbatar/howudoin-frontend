@@ -1,8 +1,9 @@
-import { Text, View, StyleSheet, ScrollView, Pressable } from "react-native";
-import { Redirect, useFocusEffect } from "expo-router";
-import Config from "../config"
+import { StyleSheet, ScrollView, Pressable, View } from "react-native";
+import { Redirect, useFocusEffect, Link } from "expo-router";
 import { Friend } from "@/components/friend";
 import { useCallback, useState } from "react";
+import { MaterialIcons } from "@expo/vector-icons";
+import Config from "@/app/config";
 
 type FriendObject = {
   email: string;
@@ -58,27 +59,31 @@ export default function Friends() {
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <View>
+      <ScrollView style={styles.container}>
+        {friends.map((friend) => (
+          <Pressable key={friend.email} onPress={() => {}}>
+            <Friend
+              key={friend.email}
+              name={friend.name}
+              lastName={friend.lastName}
+              avatar={friend.avatar}
+            />
+          </Pressable>
+        ))}
+      </ScrollView>
 
-
-
-
-      {friends.map((friend) => (
-        <Pressable key={friend.email} onPress={() => {}}>
-          <Friend
-            key={friend.email}
-            name={friend.name}
-            lastName={friend.lastName}
-            avatar={friend.avatar}
+      <Link
+        href="/(tabs)/friends/requests"
+        asChild
+        style={[styles.float, styles.btn, {width: 'auto'}]}>
+          <MaterialIcons
+            name="person-add"
+            size={28}
+            color="black"
           />
-        </Pressable>
-      ))}
-
-
-
-
-
-    </ScrollView>
+      </Link>
+    </View>
   );
 }
 
@@ -86,6 +91,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     gap: 10,
+    height: '100%',
   },
   btn: {
     padding: 10,
@@ -100,6 +106,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
 
     width: 200,
+  },
+  float: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    margin: 10,
   },
   input: {
     height: 50,

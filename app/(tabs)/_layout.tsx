@@ -1,6 +1,5 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default function TabLayout() {
@@ -9,14 +8,14 @@ export default function TabLayout() {
       <Tabs.Screen
         name="friends"
         options={{
-          title: 'Howudoin - Friends',
+          headerShown: false,
           tabBarIcon: () => <MaterialIcons name="person" size={24} />,
         }}
       />
       <Tabs.Screen
         name="groups"
         options={{
-          title: 'Howudoin - Groups',
+          headerShown: false,
           tabBarIcon: () => <MaterialIcons name="group" size={24} />,
         }}
       />
