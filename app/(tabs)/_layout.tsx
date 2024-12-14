@@ -6,17 +6,17 @@ export default function TabLayout() {
   return (
     <Tabs>
       <Tabs.Screen
-        name="friends"
+        name='friends'
         options={{
           headerShown: false,
-          tabBarIcon: () => <MaterialIcons name="person" size={24} />,
+          tabBarIcon: () => <MaterialIcons name='person' size={24} />,
         }}
       />
       <Tabs.Screen
-        name="groups"
+        name='groups'
         options={{
           headerShown: false,
-          tabBarIcon: () => <MaterialIcons name="group" size={24} />,
+          tabBarIcon: () => <MaterialIcons name='group' size={24} />,
         }}
       />
     </Tabs>

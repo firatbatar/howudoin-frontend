@@ -1,36 +1,36 @@
-import { useState } from "react";
-import { Text, View, StyleSheet, Pressable, TextInput } from "react-native";
-import { useRouter, Link } from "expo-router";
-import Config from "@/app/config";
+import { useState } from 'react';
+import { Text, View, StyleSheet, Pressable, TextInput } from 'react-native';
+import { useRouter, Link } from 'expo-router';
+import Config from '@/app/config';
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const router = useRouter();
 
   function handleLogin() {
     const requestOptions = {
-      method: "POST",
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(
         {
           email: email,
-          password: password
-        }
+          password: password,
+        },
       ),
-    }
+    };
 
-    fetch(Config.API_URL + "/login", requestOptions)
+    fetch(Config.API_URL + '/login', requestOptions)
       .then((response) => (response.text()))
       .then((result) => {
         try {
           const data = JSON.parse(result);
           Config.token = data.token;
-          router.replace("/");
+          router.replace('/');
         } catch (error) {
           console.error(error);
-          alert("Invalid email or password");
+          alert('Invalid email or password');
           return;
         }
       })
@@ -39,23 +39,23 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <View 
+      <View
         style={{
-          justifyContent: "center",
-          alignItems: "center"
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <Text style={styles.title}>Login</Text>
 
         <TextInput
-          style={styles.input} 
-          placeholder="Email"
+          style={styles.input}
+          placeholder='Email'
           value={email}
           onChangeText={setEmail}
         />
-        <TextInput 
+        <TextInput
           style={styles.input}
-          placeholder="Password"
+          placeholder='Password'
           value={password}
           onChangeText={setPassword}
           secureTextEntry={true}
@@ -66,9 +66,9 @@ export default function Login() {
         </Pressable>
       </View>
 
-        <Text style={{margin: 10}}>
-          Not signed up yet? Register <Link style={styles.link} href="/register"><Text>here</Text></Link>!
-        </Text>
+      <Text style={{margin: 10}}>
+        Not signed up yet? Register <Link style={styles.link} href='/register'><Text>here</Text></Link>!
+      </Text>
     </View>
   );
 }
@@ -76,20 +76,20 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   btn: {
     padding: 10,
-    backgroundColor: "lightgreen",
-    color: "black",
-    
+    backgroundColor: 'lightgreen',
+    color: 'black',
+
     borderWidth: 2,
     borderRadius: 5,
     margin: 10,
 
-    textAlign: "center",
-    alignItems: "center",
+    textAlign: 'center',
+    alignItems: 'center',
 
     width: 200,
   },
@@ -109,6 +109,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   link: {
-    color: "blue",
+    color: 'blue',
   },
 });

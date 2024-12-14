@@ -1,9 +1,9 @@
-import { StyleSheet, ScrollView, Pressable, View } from "react-native";
-import { Redirect, useFocusEffect, Link } from "expo-router";
-import { Friend } from "@/components/friend";
-import { useCallback, useState } from "react";
-import { MaterialIcons } from "@expo/vector-icons";
-import Config from "@/app/config";
+import { StyleSheet, ScrollView, Pressable, View } from 'react-native';
+import { Redirect, useFocusEffect, Link } from 'expo-router';
+import { Friend } from '@/components/friend';
+import { useCallback, useState } from 'react';
+import { MaterialIcons } from '@expo/vector-icons';
+import Config from '@/app/config';
 
 type FriendObject = {
   email: string;
@@ -17,20 +17,20 @@ export default function Friends() {
 
   function getFriends() {
     const getFriendsRequestOptions = {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${Config.token}`,
-      }
+      },
     };
-  
+
     fetch(`${Config.API_URL}/friends`, getFriendsRequestOptions)
       .then((response) => response.json())
       .then((data) => {
-        if (data.status !== "SUCCESS") {
+        if (data.status !== 'SUCCESS') {
           console.error(data.message);
           return null;
         }
-        
+
         setFriends([]);
         for (let i = 0; i < data.data.length; i++) {
           const friend = data.data[i];
@@ -45,17 +45,12 @@ export default function Friends() {
       .catch((error) => console.error(error));
   }
 
-  useFocusEffect(
-    useCallback(() => {
-      getFriends();
-
-      return () => {};
-    }, [])
-  );
-
+  useFocusEffect(useCallback(() => {
+    getFriends();return () => {};
+  }, []));
 
   if (!Config.token) {
-    return <Redirect href="/login" />;
+    return <Redirect href='/login' />;
   }
 
   return (
@@ -74,14 +69,15 @@ export default function Friends() {
       </ScrollView>
 
       <Link
-        href="/(tabs)/friends/requests"
+        href='/(tabs)/friends/requests'
         asChild
-        style={[styles.float, styles.btn, {width: 'auto'}]}>
-          <MaterialIcons
-            name="person-add"
-            size={28}
-            color="black"
-          />
+        style={[styles.float, styles.btn, {width: 'auto'}]}
+      >
+        <MaterialIcons
+          name='person-add'
+          size={28}
+          color='black'
+        />
       </Link>
     </View>
   );
@@ -89,21 +85,21 @@ export default function Friends() {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "column",
+    flexDirection: 'column',
     gap: 10,
     height: '100%',
   },
   btn: {
     padding: 10,
-    backgroundColor: "lightgreen",
-    color: "black",
-    
+    backgroundColor: 'lightgreen',
+    color: 'black',
+
     borderWidth: 2,
     borderRadius: 5,
     margin: 10,
 
-    textAlign: "center",
-    alignItems: "center",
+    textAlign: 'center',
+    alignItems: 'center',
 
     width: 200,
   },
@@ -129,6 +125,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   link: {
-    color: "blue",
+    color: 'blue',
   },
 });
