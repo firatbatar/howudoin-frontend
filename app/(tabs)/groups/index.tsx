@@ -1,15 +1,15 @@
-import { Text, View, StyleSheet } from "react-native";
-import { Redirect } from "expo-router";
-import Config from "../config"
+import { Text, View, StyleSheet } from 'react-native';
+import { Redirect } from 'expo-router';
+import Config from '@/app/config';
 
-export default function Friends() {
+export default function Groups() {
   if (!Config.token) {
-    return <Redirect href="/login" />;
+    return <Redirect href='/login' />;
   }
 
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Friends</Text>
+      <Text style={styles.title}>Groups</Text>
     </View>
   );
 }
@@ -17,20 +17,20 @@ export default function Friends() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   btn: {
     padding: 10,
-    backgroundColor: "lightgreen",
-    color: "black",
-    
+    backgroundColor: 'lightgreen',
+    color: 'black',
+
     borderWidth: 2,
     borderRadius: 5,
     margin: 10,
 
-    textAlign: "center",
-    alignItems: "center",
+    textAlign: 'center',
+    alignItems: 'center',
 
     width: 200,
   },
@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   link: {
-    color: "blue",
+    color: 'blue',
   },
 });
