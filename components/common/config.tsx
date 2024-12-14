@@ -51,3 +51,10 @@ export const commonStyles = StyleSheet.create({
     color: 'blue',
   },
 });
+
+export type FriendObject = {
+  email: string;
+  name: string;
+  lastName: string;
+  avatar: string;
+};

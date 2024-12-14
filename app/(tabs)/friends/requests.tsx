@@ -1,15 +1,8 @@
 import { Pressable, Text, TextInput, View } from 'react-native';
 import { useState, useCallback } from 'react';
-import Config, { commonStyles } from '@/components/common/config';
+import Config, { commonStyles, FriendObject } from '@/components/common/config';
 import { useFocusEffect } from 'expo-router';
 import { RequestList } from '@/components/requestList';
-
-type FriendObject = {
-  email: string;
-  name: string;
-  lastName: string;
-  avatar: string;
-};
 
 export default function FriendRequest() {
   const [email, setEmail] = useState('');

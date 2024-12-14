@@ -3,14 +3,7 @@ import { Redirect, useFocusEffect, Link } from 'expo-router';
 import { Friend } from '@/components/friend';
 import { useCallback, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-import Config, { commonStyles } from '@/components/common/config';
-
-type FriendObject = {
-  email: string;
-  name: string;
-  lastName: string;
-  avatar: string;
-};
+import Config, { commonStyles, FriendObject } from '@/components/common/config';
 
 export default function Friends() {
   const [friends, setFriends] = useState<FriendObject[]>([]);
