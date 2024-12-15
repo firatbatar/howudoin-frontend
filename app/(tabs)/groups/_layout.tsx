@@ -11,9 +11,9 @@ export default function GroupsLayout() {
         }}
       />
       <Stack.Screen
-        name='requests'
+        name='create'
         options={{
-          title: 'Group Requests',
+          title: 'Create Group',
         }}
       />
     </Stack>

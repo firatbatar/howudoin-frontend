@@ -39,7 +39,9 @@ export default function Friends() {
   }
 
   useFocusEffect(useCallback(() => {
-    getFriends();return () => {};
+    getFriends();
+
+    return () => {};
   }, []));
 
   if (!Config.token) {
@@ -58,7 +60,6 @@ export default function Friends() {
         {friends.map((friend) => (
           <Pressable key={friend.email} onPress={() => {}}>
             <Friend
-              key={friend.email}
               friend={friend}
               lastMessage={null}
               showEmail={false}
