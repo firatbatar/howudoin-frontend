@@ -1,12 +1,14 @@
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { useState, useCallback } from 'react';
 import Config, { commonStyles, FriendObject } from '@/components/common/config';
-import { useFocusEffect } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { Friend } from '@/components/friend';
 
 export default function FriendRequest() {
   const [email, setEmail] = useState('');
   const [friendRequests, setFriendRequests] = useState<FriendObject[]>([]);
+
+  const router = useRouter();
 
   function getFriendRequests() {
     const getFriendRequestsRequestOptions = {
@@ -60,7 +62,7 @@ export default function FriendRequest() {
       })
       .catch((error) => console.error(error));
 
-    getFriendRequests();
+    router.replace('/(tabs)/friends/requests');
   }
 
   function sendFriendRequest() {

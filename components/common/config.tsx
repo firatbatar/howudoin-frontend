@@ -59,6 +59,12 @@ export type FriendObject = {
   avatar: string;
 };
 
+export type GroupObject = {
+  id: string;
+  name: string;
+  avatar: string;
+}
+
 export type MessageObject = {
   sender: string;
   message: string;
