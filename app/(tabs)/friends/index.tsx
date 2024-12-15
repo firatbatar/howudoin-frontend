@@ -59,9 +59,9 @@ export default function Friends() {
           <Pressable key={friend.email} onPress={() => {}}>
             <Friend
               key={friend.email}
-              name={friend.name}
-              lastName={friend.lastName}
-              avatar={friend.avatar}
+              friend={friend}
+              lastMessage={null}
+              showEmail={false}
             />
           </Pressable>
         ))}
