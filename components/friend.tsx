@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { commonStyles } from '@/components/common/config';
+import { commonStyles, FriendObject, MessageObject } from '@/components/common/config';
 
 type FriendProps = {
-    name: string;
-    lastName: string;
-    avatar: string;
+    friend: FriendObject;
+    lastMessage: MessageObject | null;
+    showEmail: boolean;
 };
 
-export function Friend({ name, lastName, avatar }: FriendProps) {
+export function Friend({ friend, lastMessage, showEmail }: FriendProps) {
   return (
     <View style={styles.friend}>
       <Image
@@ -16,12 +16,22 @@ export function Friend({ name, lastName, avatar }: FriendProps) {
       />
 
       <View style={commonStyles.text}>
-        <Text style={styles.name}>{name} {lastName}</Text>
+        <Text style={styles.name}>{friend.name} {friend.lastName}</Text>
 
-        <View style={styles.info}>
-          <Text>last message</Text>
-          <Text>20:36</Text>
-        </View>
+        {showEmail && (
+          <Text style={{ fontSize: 12 }}>{friend.email}</Text>
+        )}
+
+        {lastMessage && (
+          <View style={styles.info}>
+            <Text>
+              {lastMessage.sender === 'me' ? `you: ${lastMessage.message}` : lastMessage.message}
+            </Text>
+            <Text>
+              {new Date(lastMessage.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </Text>
+          </View>
+        )}
       </View>
     </View>
   );

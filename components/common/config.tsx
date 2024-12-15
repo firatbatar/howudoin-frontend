@@ -58,3 +58,9 @@ export type FriendObject = {
   lastName: string;
   avatar: string;
 };
+
+export type MessageObject = {
+  sender: string;
+  message: string;
+  timestamp: string;
+};

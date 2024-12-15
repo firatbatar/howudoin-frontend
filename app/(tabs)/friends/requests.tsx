@@ -1,8 +1,8 @@
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { useState, useCallback } from 'react';
 import Config, { commonStyles, FriendObject } from '@/components/common/config';
 import { useFocusEffect } from 'expo-router';
-import { RequestList } from '@/components/requestList';
+import { Friend } from '@/components/friend';
 
 export default function FriendRequest() {
   const [email, setEmail] = useState('');
@@ -18,15 +18,17 @@ export default function FriendRequest() {
 
     fetch(`${Config.API_URL}/friends/requests`, getFriendRequestsRequestOptions)
       .then((response) => response.json())
-      .then((data) => {
-        if (data.status !== 'SUCCESS') {
-          console.error(data.message);
+      .then((result) => {
+        if (result.status !== 'SUCCESS') {
+          console.error(result.message);
           return null;
         }
 
+        result.data = result.data || [];
+
         setFriendRequests([]);
-        for (let i = 0; i < data.data.length; i++) {
-          const friend = data.data[i];
+        for (let i = 0; i < result.data.length; i++) {
+          const friend = result.data[i];
           setFriendRequests(friendRequests => [...friendRequests, {
             email: friend.email,
             name: friend.name,
@@ -57,6 +59,8 @@ export default function FriendRequest() {
         }
       })
       .catch((error) => console.error(error));
+
+    getFriendRequests();
   }
 
   function sendFriendRequest() {
@@ -124,18 +128,41 @@ export default function FriendRequest() {
       </View>
 
 
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          paddingBottom: 20,
-          marginTop: 20,
-        }}
-      >
-        <RequestList
-          requests={friendRequests}
-          acceptFriendRequest={acceptFriendRequest}
-        />
+      <View style={{ flex: 1 }}>
+        <Text style={commonStyles.title}>Requests</Text>
+
+        {friendRequests.length === 0 &&
+          <Text style={{ textAlign:'center' }}>
+            You don't have any pending friend requests.
+          </Text>}
+
+        {friendRequests.length > 0 && (
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            {
+              friendRequests.map((friend) => (
+                <View key={friend.email}>
+                  <Friend
+                    friend={friend}
+                    lastMessage={null}
+                    showEmail={true}
+                  />
+                </View>
+              ))
+            }
+          </ScrollView>
+        )}
+
+        {friendRequests.length > 0 && (
+          <Pressable
+            onPress={acceptFriendRequest}
+            style={[
+              commonStyles.btn,
+              { marginStart: 'auto', marginEnd: 'auto'},
+            ]}
+          >
+            <Text>Accept</Text>
+          </Pressable>
+        )}
       </View>
     </View>
   );
