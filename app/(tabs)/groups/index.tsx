@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, Pressable, View } from 'react-native';
+import { StyleSheet, ScrollView, Pressable, View, Text } from 'react-native';
 import { Redirect, useFocusEffect, Link } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -56,6 +56,18 @@ export default function Groups() {
           height: '100%',
         }}
       >
+        {groups.length === 0 && (
+          <Text
+            style={{
+              textAlign: 'center',
+              marginTop: 20,
+              fontSize: 18,
+            }}
+          >
+            No groups to chat.
+          </Text>
+        )}
+
         {groups.map((group) => (
           <Pressable key={group.id} onPress={() => {}}>
             <Group

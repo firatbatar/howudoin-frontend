@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, Pressable, View } from 'react-native';
+import { StyleSheet, ScrollView, Pressable, View, Text } from 'react-native';
 import { Redirect, useFocusEffect, Link } from 'expo-router';
 import { Friend } from '@/components/friend';
 import { useCallback, useState } from 'react';
@@ -57,6 +57,18 @@ export default function Friends() {
           height: '100%',
         }}
       >
+        {friends.length === 0 && (
+          <Text
+            style={{
+              textAlign: 'center',
+              marginTop: 20,
+              fontSize: 18,
+            }}
+          >
+            No friends to chat.
+          </Text>
+        )}
+
         {friends.map((friend) => (
           <Pressable key={friend.email} onPress={() => {}}>
             <Friend
