@@ -20,17 +20,6 @@ export function Friend({ friend, showEmail }: FriendProps) {
         {showEmail && (
           <Text style={{ fontSize: 12 }}>{friend.email}</Text>
         )}
-
-        {friend.lastMessage && (
-          <View style={styles.info}>
-            <Text>
-              {friend.lastMessage.sender === 'me' ? `you: ${friend.lastMessage.message}` : friend.lastMessage.message}
-            </Text>
-            <Text>
-              {new Date(friend.lastMessage.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-            </Text>
-          </View>
-        )}
       </View>
     </View>
   );

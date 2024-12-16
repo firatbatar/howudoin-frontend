@@ -17,6 +17,5 @@ module.exports = {
     'keyword-spacing': ['error', { 'before': true, 'after': true }],
     'space-infix-ops': ['error'],
     'eol-last': ['error', 'always'],
-    'react-hooks/exhaustive-deps': 'off',
   },
 };

@@ -57,18 +57,10 @@ export type FriendObject = {
   name: string;
   lastName: string;
   avatar: string;
-  lastMessage: MessageObject | null;
 };
 
 export type GroupObject = {
   id: string;
   name: string;
   avatar: string;
-  lastMessage: MessageObject | null;
 }
-
-export type MessageObject = {
-  sender: string;
-  message: string;
-  timestamp: string;
-};

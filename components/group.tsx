@@ -15,17 +15,6 @@ export function Group({ group }: GroupProps) {
 
       <View style={commonStyles.text}>
         <Text style={styles.name}>{group.name}</Text>
-
-        {group.lastMessage && (
-          <View style={styles.info}>
-            <Text>
-              {group.lastMessage.sender === 'me' ? `you: ${group.lastMessage.message}` : group.lastMessage.message}
-            </Text>
-            <Text>
-              {new Date(group.lastMessage.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-            </Text>
-          </View>
-        )}
       </View>
     </View>
   );
