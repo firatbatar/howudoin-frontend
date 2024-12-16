@@ -3,20 +3,64 @@ import { Redirect, useFocusEffect, Link } from 'expo-router';
 import { Friend } from '@/components/friend';
 import { useCallback, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-import Config, { commonStyles, FriendObject } from '@/components/common/config';
+import Config, { commonStyles, FriendObject, MessageObject } from '@/components/common/config';
 
 export default function Friends() {
   const [friends, setFriends] = useState<FriendObject[]>([]);
 
-  function getFriends() {
-    const getFriendsRequestOptions = {
+  function getLastMessage(email: string) {
+    const requestOptions = {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${Config.token}`,
       },
     };
 
-    fetch(`${Config.API_URL}/friends`, getFriendsRequestOptions)
+    fetch(`${Config.API_URL}/messages?historyId=${email}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.status !== 'SUCCESS') {
+          console.error(result.message);
+          return null;
+        }
+
+        result.data = result.data || [];
+
+        if (result.data.length === 0) {
+          return null;
+        }
+
+        let message = result.data[0];
+
+        if (message.sender !== email) {
+          message.sender = 'me';
+        }
+
+        const lastMessage = {
+          sender: message.sender,
+          message: message.content,
+          timestamp: message.timestamp,
+        } as MessageObject;
+
+        setFriends(friends => friends.map((friend) => {
+          if (friend.email === email) {
+            friend.lastMessage = lastMessage;
+          }
+          return friend;
+        }));
+      })
+      .catch((error) => console.error(error));
+  }
+
+  function getFriends() {
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${Config.token}`,
+      },
+    };
+
+    fetch(`${Config.API_URL}/friends`, requestOptions as RequestInit)
       .then((response) => response.json())
       .then((data) => {
         if (data.status !== 'SUCCESS') {
@@ -32,6 +76,7 @@ export default function Friends() {
             name: friend.name,
             lastName: friend.lastname,
             avatar: '',
+            lastMessage: null,
           }]);
         }
       })
@@ -40,6 +85,10 @@ export default function Friends() {
 
   useFocusEffect(useCallback(() => {
     getFriends();
+
+    friends.forEach((friend) => {
+      getLastMessage(friend.email);
+    });
 
     return () => {};
   }, []));
@@ -73,7 +122,6 @@ export default function Friends() {
           <Pressable key={friend.email} onPress={() => {}}>
             <Friend
               friend={friend}
-              lastMessage={null}
               showEmail={false}
             />
           </Pressable>

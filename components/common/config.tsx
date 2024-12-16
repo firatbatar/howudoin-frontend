@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export default class Config {
-  public static readonly API_URL = 'http://10.51.126.222:8080';
+  public static readonly API_URL = 'http://10.51.13.113:8080';
   public static token: string = '';
 }
 
@@ -57,6 +57,7 @@ export type FriendObject = {
   name: string;
   lastName: string;
   avatar: string;
+  lastMessage: MessageObject | null;
 };
 
 export type GroupObject = {
