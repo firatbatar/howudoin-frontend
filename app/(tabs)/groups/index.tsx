@@ -2,11 +2,55 @@ import { StyleSheet, ScrollView, Pressable, View, Text } from 'react-native';
 import { Redirect, useFocusEffect, Link } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-import Config, { commonStyles, GroupObject } from '@/components/common/config';
+import Config, { commonStyles, GroupObject, MessageObject } from '@/components/common/config';
 import { Group } from '@/components/group';
 
 export default function Groups() {
   const [groups, setGroups] = useState<GroupObject[]>([]);
+
+  function getLastMessage(id: string) {
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${Config.token}`,
+      },
+    };
+
+    fetch(`${Config.API_URL}/messages?historyId=${id}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.status !== 'SUCCESS') {
+          console.error(result.message);
+          return null;
+        }
+
+        result.data = result.data || [];
+
+        if (result.data.length === 0) {
+          return null;
+        }
+
+        let message = result.data[0];
+
+        // if (message.sender !== email) {
+        //   message.sender = 'me';
+        // }
+
+        const lastMessage = {
+          sender: message.sender,
+          message: message.content,
+          timestamp: message.timestamp,
+        } as MessageObject;
+
+        setGroups(groups => groups.map((group) => {
+          if (group.id === id) {
+            group.lastMessage = lastMessage;
+          }
+          return group;
+        }));
+      })
+      .catch((error) => console.error(error));
+  }
 
   function getGroups() {
     const requestOptions = {
@@ -31,6 +75,7 @@ export default function Groups() {
             id: group.id,
             name: group.name,
             avatar: '',
+            lastMessage: null,
           }]);
         }
       })
@@ -39,6 +84,10 @@ export default function Groups() {
 
   useFocusEffect(useCallback(() => {
     getGroups();
+
+    groups.forEach((group) => {
+      getLastMessage(group.id);
+    });
 
     return () => {};
   }, []));
@@ -72,7 +121,6 @@ export default function Groups() {
           <Pressable key={group.id} onPress={() => {}}>
             <Group
               group={group}
-              lastMessage={null}
             />
           </Pressable>
         ))}

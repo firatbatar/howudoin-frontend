@@ -64,6 +64,7 @@ export type GroupObject = {
   id: string;
   name: string;
   avatar: string;
+  lastMessage: MessageObject | null;
 }
 
 export type MessageObject = {
