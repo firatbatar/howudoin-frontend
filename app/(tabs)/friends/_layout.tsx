@@ -16,6 +16,12 @@ export default function FriendsLayout() {
           title: 'Friend Requests',
         }}
       />
+      <Stack.Screen
+        name='chat'
+        options={{
+          title: 'Friend Chat',
+        }}
+      />
     </Stack>
   );
 }
