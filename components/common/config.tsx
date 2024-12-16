@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export default class Config {
-  public static readonly API_URL = 'http://10.51.126.222:8080';
+  public static readonly API_URL = 'http://10.51.13.113:8080';
   public static token: string = '';
 }
 
@@ -64,9 +64,3 @@ export type GroupObject = {
   name: string;
   avatar: string;
 }
-
-export type MessageObject = {
-  sender: string;
-  message: string;
-  timestamp: string;
-};

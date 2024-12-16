@@ -72,7 +72,6 @@ export default function Groups() {
           <Pressable key={group.id} onPress={() => {}}>
             <Group
               group={group}
-              lastMessage={null}
             />
           </Pressable>
         ))}

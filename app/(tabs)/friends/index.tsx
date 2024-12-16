@@ -9,14 +9,14 @@ export default function Friends() {
   const [friends, setFriends] = useState<FriendObject[]>([]);
 
   function getFriends() {
-    const getFriendsRequestOptions = {
+    const requestOptions = {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${Config.token}`,
       },
     };
 
-    fetch(`${Config.API_URL}/friends`, getFriendsRequestOptions)
+    fetch(`${Config.API_URL}/friends`, requestOptions as RequestInit)
       .then((response) => response.json())
       .then((data) => {
         if (data.status !== 'SUCCESS') {
@@ -73,7 +73,6 @@ export default function Friends() {
           <Pressable key={friend.email} onPress={() => {}}>
             <Friend
               friend={friend}
-              lastMessage={null}
               showEmail={false}
             />
           </Pressable>
