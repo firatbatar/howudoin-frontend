@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Text, View, Pressable, TextInput } from 'react-native';
 import { useRouter, Link } from 'expo-router';
 import Config from '@/components/common/config';
-import { commonStyles } from '@/components/common/config';
+import { Style } from '@/components/common/styles';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -52,29 +52,29 @@ export default function Login() {
           alignItems: 'center',
         }}
       >
-        <Text style={commonStyles.title}>Login</Text>
+        <Text style={Style.title}>Login</Text>
 
         <TextInput
-          style={commonStyles.input}
+          style={Style.input}
           placeholder='Email'
           value={email}
           onChangeText={setEmail}
         />
         <TextInput
-          style={commonStyles.input}
+          style={Style.input}
           placeholder='Password'
           value={password}
           onChangeText={setPassword}
           secureTextEntry={true}
         />
 
-        <Pressable style={commonStyles.btn} onPress={handleLogin}>
+        <Pressable style={Style.btn} onPress={handleLogin}>
           <Text>Login</Text>
         </Pressable>
       </View>
 
       <Text style={{margin: 10, textAlign: 'center'}}>
-        Not signed up yet? Register <Link style={commonStyles.link} href='/register'><Text>here</Text></Link>!
+        Not signed up yet? Register <Link style={Style.link} href='/register'><Text>here</Text></Link>!
       </Text>
     </View>
   );

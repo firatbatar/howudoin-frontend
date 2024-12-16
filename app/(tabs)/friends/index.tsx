@@ -3,7 +3,9 @@ import { Redirect, useFocusEffect, Link } from 'expo-router';
 import { Friend } from '@/components/friend';
 import { useCallback, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-import Config, { commonStyles, FriendObject } from '@/components/common/config';
+import Config from '@/components/common/config';
+import { Style } from '@/components/common/styles';
+import { FriendObject } from '@/components/common/types';
 
 export default function Friends() {
   const [friends, setFriends] = useState<FriendObject[]>([]);
@@ -82,7 +84,7 @@ export default function Friends() {
       <Link
         href='/(tabs)/friends/requests'
         asChild
-        style={[styles.float, commonStyles.btn, {width: 'auto'}]}
+        style={[styles.float, Style.btn, {width: 'auto'}]}
       >
         <MaterialIcons
           name='person-add'

@@ -1,5 +1,5 @@
 import { View, Text, TextInput, Pressable } from 'react-native';
-import { commonStyles } from '@/components/common/config';
+import { Style } from '@/components/common/styles';
 import { useCallback, useState } from 'react';
 import { MultipleSelectList } from 'react-native-dropdown-select-list';
 import Config from '@/components/common/config';
@@ -87,10 +87,10 @@ export default function GroupRequest() {
         alignItems: 'center',
       }}
     >
-      <Text style={commonStyles.title}>Create A New Group</Text>
+      <Text style={Style.title}>Create A New Group</Text>
 
       <TextInput
-        style={commonStyles.input}
+        style={Style.input}
         placeholder='Group Name'
         value={groupName}
         onChangeText={setGroupName}
@@ -106,7 +106,7 @@ export default function GroupRequest() {
         notFoundText='No friends found.'
       />
 
-      <Pressable style={commonStyles.btn} onPress={handleCreateGroup}>
+      <Pressable style={Style.btn} onPress={handleCreateGroup}>
         <Text>Create</Text>
       </Pressable>
     </View>

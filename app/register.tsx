@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Text, View, Pressable, TextInput } from 'react-native';
 import { router } from 'expo-router';
 import Config from '@/components/common/config';
-import { commonStyles } from '@/components/common/config';
+import { Style } from '@/components/common/styles';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -48,7 +48,7 @@ export default function Register() {
         alignItems: 'center',
       }}
     >
-      <Text style={commonStyles.title}>Register</Text>
+      <Text style={Style.title}>Register</Text>
 
       <View
         style={{
@@ -65,13 +65,13 @@ export default function Register() {
           }}
         >
           <TextInput
-            style={[commonStyles.input, {width: 145}]}
+            style={[Style.input, {width: 145}]}
             placeholder='Name'
             value={name}
             onChangeText={setName}
           />
           <TextInput
-            style={[commonStyles.input, {width: 145}]}
+            style={[Style.input, {width: 145}]}
             placeholder='Last Name'
             value={lastName}
             onChangeText={setLastName}
@@ -79,20 +79,20 @@ export default function Register() {
         </View>
 
         <TextInput
-          style={commonStyles.input}
+          style={Style.input}
           placeholder='Email'
           value={email}
           onChangeText={setEmail}
         />
         <TextInput
-          style={commonStyles.input}
+          style={Style.input}
           placeholder='Password'
           value={password}
           onChangeText={setPassword}
           secureTextEntry={true}
         />
 
-        <Pressable style={commonStyles.btn} onPress={handleRegister}>
+        <Pressable style={Style.btn} onPress={handleRegister}>
           <Text>Register</Text>
         </Pressable>
       </View>

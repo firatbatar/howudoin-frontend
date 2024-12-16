@@ -2,7 +2,9 @@ import { StyleSheet, ScrollView, Pressable, View, Text } from 'react-native';
 import { Redirect, useFocusEffect, Link } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-import Config, { commonStyles, GroupObject } from '@/components/common/config';
+import Config from '@/components/common/config';
+import { Style } from '@/components/common/styles';
+import { GroupObject } from '@/components/common/types';
 import { Group } from '@/components/group';
 
 export default function Groups() {
@@ -80,7 +82,7 @@ export default function Groups() {
       <Link
         href='/(tabs)/groups/create'
         asChild
-        style={[styles.float, commonStyles.btn, {width: 'auto'}]}
+        style={[styles.float, Style.btn, {width: 'auto'}]}
       >
         <MaterialIcons
           name='group-add'

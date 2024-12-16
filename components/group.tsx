@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { commonStyles, GroupObject } from '@/components/common/config';
+import { GroupObject } from '@/components/common/types';
+import { Style } from '@/components/common/styles';
 
 type GroupProps = {
     group: GroupObject;
@@ -9,11 +10,11 @@ export function Group({ group }: GroupProps) {
   return (
     <View style={styles.group}>
       <Image
-        style={commonStyles.image}
+        style={Style.image}
         source={require('../assets/images/react-logo.png')}
       />
 
-      <View style={commonStyles.text}>
+      <View style={Style.text}>
         <Text style={styles.name}>{group.name}</Text>
       </View>
     </View>
