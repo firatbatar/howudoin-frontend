@@ -1,11 +1,15 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { commonStyles, GroupObject } from '@/components/common/config';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 type GroupProps = {
     group: GroupObject;
 };
 
 export function Group({ group }: GroupProps) {
+  const router = useRouter();
+
   return (
     <View style={styles.group}>
       <Image
@@ -16,6 +20,17 @@ export function Group({ group }: GroupProps) {
       <View style={commonStyles.text}>
         <Text style={styles.name}>{group.name}</Text>
       </View>
+
+      <Pressable
+        style={{
+          marginEnd: 15,
+        }}
+        onPress={() => {
+          router.push(`/(tabs)/groups/group_info?id=${group.id}&name=${group.name}`);
+        }}
+      >
+        <MaterialIcons name="info" size={24} color="black" />
+      </Pressable>
     </View>
   );
 }
