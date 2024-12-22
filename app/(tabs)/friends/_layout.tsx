@@ -5,22 +5,22 @@ export default function FriendsLayout() {
   return (
     <Stack>
       <Stack.Screen
-        name='index'
+        name="index"
         options={{
           title: 'Howudoin - Friends',
         }}
       />
       <Stack.Screen
-        name='requests'
+        name="requests"
         options={{
           title: 'Friend Requests',
         }}
       />
       <Stack.Screen
-        name='chat'
-        options={{
-          title: 'Friend Chat',
-        }}
+        name="chat"
+        options={({ route }) => ({
+          title: route.params?.title,
+        })}
       />
     </Stack>
   );

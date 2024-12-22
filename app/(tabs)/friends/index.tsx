@@ -1,5 +1,5 @@
 import { StyleSheet, ScrollView, Pressable, View, Text } from 'react-native';
-import { Redirect, useFocusEffect, Link } from 'expo-router';
+import { Redirect, useFocusEffect, Link, useRouter } from 'expo-router';
 import { Friend } from '@/components/friend';
 import { useCallback, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -9,6 +9,8 @@ import { FriendObject } from '@/components/common/types';
 
 export default function Friends() {
   const [friends, setFriends] = useState<FriendObject[]>([]);
+
+  const router = useRouter();
 
   function getFriends() {
     const requestOptions = {
@@ -72,7 +74,15 @@ export default function Friends() {
         )}
 
         {friends.map((friend) => (
-          <Pressable key={friend.email} onPress={() => {}}>
+          <Pressable
+            key={friend.email}
+            onPress={() => {
+              router.push({
+                pathname: '/(tabs)/friends/chat',
+                params: { title: `${friend.name} ${friend.lastName}` },
+              });
+            }}
+          >
             <Friend
               friend={friend}
               showEmail={false}

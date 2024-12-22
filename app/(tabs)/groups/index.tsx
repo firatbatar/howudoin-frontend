@@ -1,5 +1,5 @@
 import { StyleSheet, ScrollView, Pressable, View, Text } from 'react-native';
-import { Redirect, useFocusEffect, Link } from 'expo-router';
+import { Redirect, useFocusEffect, Link, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import Config from '@/components/common/config';
@@ -9,6 +9,8 @@ import { Group } from '@/components/group';
 
 export default function Groups() {
   const [groups, setGroups] = useState<GroupObject[]>([]);
+
+  const router = useRouter();
 
   function getGroups() {
     const requestOptions = {
@@ -71,7 +73,15 @@ export default function Groups() {
         )}
 
         {groups.map((group) => (
-          <Pressable key={group.id} onPress={() => {}}>
+          <Pressable
+            key={group.id}
+            onPress={() => {
+              router.push({
+                pathname: '/(tabs)/groups/chat',
+                params: { title: group.name },
+              });
+            }}
+          >
             <Group
               group={group}
             />
