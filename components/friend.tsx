@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { commonStyles, FriendObject } from '@/components/common/config';
+import { FriendObject } from '@/components/common/types';
+import { Style } from '@/components/common/styles';
 
 type FriendProps = {
     friend: FriendObject;
@@ -10,11 +11,11 @@ export function Friend({ friend, showEmail }: FriendProps) {
   return (
     <View style={styles.friend}>
       <Image
-        style={commonStyles.image}
+        style={[Style.image, styles.image]}
         source={require('../assets/images/react-logo.png')}
       />
 
-      <View style={commonStyles.text}>
+      <View style={Style.text}>
         <Text style={styles.name}>{friend.name} {friend.lastName}</Text>
 
         {showEmail && (
@@ -41,5 +42,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginStart: 10,
     marginEnd: 20,
+  },
+  image: {
+    borderWidth: 1,
   },
 });

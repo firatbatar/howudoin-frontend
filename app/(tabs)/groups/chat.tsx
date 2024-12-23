@@ -1,31 +1,60 @@
+import { ScrollView, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  FlatList,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { MessageBubble, MessageInput, Message } from '@/components/messages';
-
-interface GroupMessage extends Message {
-  senderName: string;
-}
+import { useLocalSearchParams } from 'expo-router';
 
 export default function GroupChat() {
-  const [messages, setMessages] = useState<GroupMessage[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
-  const [userId, setUserId] = useState<string | null>(null);
+
   const navigation = useNavigation();
   const route = useRoute();
-  const { groupId, groupName } = route.params as { groupId: string; groupName: string };
 
+  const params = useLocalSearchParams<
+    {
+      id: string
+      name: string
+    }
+  >();
+
+
+  function fetchMessages() {
+
+  }
+
+  function sendMessage() {
+
+  }
+
+  useEffect(() => {
+    // navigation.setOptions({ title: friendName });
+
+    fetchMessages();
+
+    const interval = setInterval(fetchMessages, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <View>
+      <ScrollView>
+        {messages.map(message => (
+          <MessageBubble
+            key={message.id}
+            content={message.content}
+            timestamp={new Date(message.timestamp).toLocaleTimeString()}
+            isOwnMessage={true}
+          />
+        ))}
+      </ScrollView>
+
+      <MessageInput
+        value={newMessage}
+        onChangeText={setNewMessage}
+        onSend={sendMessage}
+      />
+    </View>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-});

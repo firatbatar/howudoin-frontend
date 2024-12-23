@@ -1,6 +1,8 @@
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { useState, useCallback } from 'react';
-import Config, { commonStyles, FriendObject } from '@/components/common/config';
+import Config from '@/components/common/config';
+import { Style } from '@/components/common/styles';
+import { FriendObject } from '@/components/common/types';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { Friend } from '@/components/friend';
 
@@ -117,21 +119,21 @@ export default function FriendRequest() {
           marginTop: 20,
         }}
       >
-        <Text style={commonStyles.title} >Add Friend</Text>
+        <Text style={Style.title} >Add Friend</Text>
         <TextInput
           placeholder='Email'
-          style={commonStyles.input}
+          style={Style.input}
           value={email}
           onChangeText={setEmail}
         />
-        <Pressable style={commonStyles.btn} onPress={sendFriendRequest}>
+        <Pressable style={Style.btn} onPress={sendFriendRequest}>
           <Text>Send</Text>
         </Pressable>
       </View>
 
 
       <View style={{ flex: 1 }}>
-        <Text style={commonStyles.title}>Requests</Text>
+        <Text style={Style.title}>Requests</Text>
 
         {friendRequests.length === 0 &&
           <Text style={{ textAlign:'center' }}>
@@ -145,7 +147,6 @@ export default function FriendRequest() {
                 <View key={friend.email}>
                   <Friend
                     friend={friend}
-                    lastMessage={null}
                     showEmail={true}
                   />
                 </View>
@@ -158,7 +159,7 @@ export default function FriendRequest() {
           <Pressable
             onPress={acceptFriendRequest}
             style={[
-              commonStyles.btn,
+              Style.btn,
               { marginStart: 'auto', marginEnd: 'auto'},
             ]}
           >
