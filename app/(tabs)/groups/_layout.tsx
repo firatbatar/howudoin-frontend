@@ -16,6 +16,18 @@ export default function GroupsLayout() {
           title: 'Create Group',
         }}
       />
+      <Stack.Screen
+        name='group_details'
+        options={{
+          title: 'Group Details',
+        }}
+      />
+      <Stack.Screen
+        name='add_member'
+        options={{
+          title: 'Add Member',
+        }}
+      />
     </Stack>
   );
 }

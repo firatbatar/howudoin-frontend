@@ -145,7 +145,6 @@ export default function FriendRequest() {
                 <View key={friend.email}>
                   <Friend
                     friend={friend}
-                    lastMessage={null}
                     showEmail={true}
                   />
                 </View>
