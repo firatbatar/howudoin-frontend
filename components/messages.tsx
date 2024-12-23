@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { colors } from './common/config';
+import { Colours } from './common/styles';
 import { MaterialIcons } from '@expo/vector-icons';
-
 
 export interface Message {
   id: string;
@@ -28,17 +27,17 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
   timestamp,
   isOwnMessage,
   senderName,
-  status
+  status,
 }) => (
   <View style={styles.messageWrapper}>
     {senderName && <Text style={styles.senderName}>{senderName}</Text>}
     <View style={[
       styles.messageBubble,
-      isOwnMessage ? styles.ownMessage : styles.otherMessage
+      isOwnMessage ? styles.ownMessage : styles.otherMessage,
     ]}>
       <Text style={[
         styles.messageText,
-        isOwnMessage ? styles.ownMessageText : styles.otherMessageText
+        isOwnMessage ? styles.ownMessageText : styles.otherMessageText,
       ]}>
         {content}
       </Text>
@@ -47,13 +46,13 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
         {isOwnMessage && status && (
           <View style={styles.statusContainer}>
             {status === 'sent' && (
-              <MaterialIcons name="check" size={14} color={colors.gray} />
+              <MaterialIcons name="check" size={14} color={Colours.gray} />
             )}
             {status === 'delivered' && (
-              <MaterialIcons name="done-all" size={14} color={colors.gray} />
+              <MaterialIcons name="done-all" size={14} color={Colours.gray} />
             )}
             {status === 'read' && (
-              <MaterialIcons name="done-all" size={14} color={colors.blue} />
+              <MaterialIcons name="done-all" size={14} color={Colours.blue} />
             )}
           </View>
         )}
@@ -71,7 +70,7 @@ interface MessageInputProps {
 export const MessageInput: React.FC<MessageInputProps> = ({
   value,
   onChangeText,
-  onSend
+  onSend,
 }) => (
   <View style={styles.inputContainer}>
     <TextInput
@@ -86,7 +85,7 @@ export const MessageInput: React.FC<MessageInputProps> = ({
       onPress={onSend}
       disabled={!value.trim()}
     >
-      <MaterialIcons name="send" size={24} color={colors.white} />
+      <MaterialIcons name="send" size={24} color={Colours.white} />
     </TouchableOpacity>
   </View>
 );
@@ -102,25 +101,25 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   ownMessage: {
-    backgroundColor: colors.primary,
+    backgroundColor: Colours.primary,
     alignSelf: 'flex-end',
   },
   otherMessage: {
-    backgroundColor: colors.lightGray,
+    backgroundColor: Colours.lightGray,
     alignSelf: 'flex-start',
   },
   messageText: {
     fontSize: 16,
   },
   ownMessageText: {
-    color: colors.white,
+    color: Colours.white,
   },
   otherMessageText: {
-    color: colors.black,
+    color: Colours.black,
   },
   senderName: {
     fontSize: 12,
-    color: colors.gray,
+    color: Colours.gray,
     marginBottom: 2,
     marginLeft: 5,
   },
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
   },
   timestamp: {
     fontSize: 12,
-    color: colors.gray,
+    color: Colours.gray,
     marginRight: 5,
   },
   statusContainer: {
@@ -142,22 +141,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     borderTopWidth: 1,
-    borderTopColor: colors.lightGray,
-    backgroundColor: colors.white,
+    borderTopColor: Colours.lightGray,
+    backgroundColor: Colours.white,
   },
   input: {
     flex: 1,
     borderWidth: 1,
-    borderColor: colors.lightGray,
+    borderColor: Colours.lightGray,
     borderRadius: 20,
     paddingHorizontal: 15,
     paddingVertical: 8,
     marginRight: 10,
     maxHeight: 100,
-    backgroundColor: colors.white,
+    backgroundColor: Colours.white,
   },
   sendButton: {
-    backgroundColor: colors.primary,
+    backgroundColor: Colours.primary,
     width: 44,
     height: 44,
     borderRadius: 22,
@@ -165,6 +164,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   sendButtonDisabled: {
-    backgroundColor: colors.gray,
+    backgroundColor: Colours.gray,
   },
 });

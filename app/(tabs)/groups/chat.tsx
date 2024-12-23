@@ -11,13 +11,7 @@ export default function GroupChat() {
   const navigation = useNavigation();
   const route = useRoute();
 
-  const params = useLocalSearchParams<
-    {
-      id: string
-      name: string
-    }
-  >();
-
+  const params = useLocalSearchParams<{ id: string; name: string }>();
 
   function fetchMessages() {
 
@@ -28,7 +22,7 @@ export default function GroupChat() {
   }
 
   useEffect(() => {
-    // navigation.setOptions({ title: friendName });
+    // navigation.setOptions({ title: params.name });
 
     fetchMessages();
 
