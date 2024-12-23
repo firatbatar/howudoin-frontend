@@ -25,17 +25,18 @@ export default function Register() {
     };
 
     fetch(Config.API_URL + '/register', requestOptions)
-      .then((response) => response.text())
+      .then((response) => (response.json()))
       .then((result) => {
-        try {
-          const data = JSON.parse(result);
-          alert(`User ${data.name} ${data.lastname} registered successfully`);
-          router.replace('/');
-        } catch (error) {
-          console.error(error);
-          alert(`Error: ${error}`);
+        if (result.status !== 'SUCCESS') {
+          alert(result.message);
           return;
         }
+
+        const user = result.data;
+
+        alert(`User ${user.name} ${user.lastname} registered successfully`);
+
+        router.replace('/');
       })
       .catch((error) => console.error(error));
   }
