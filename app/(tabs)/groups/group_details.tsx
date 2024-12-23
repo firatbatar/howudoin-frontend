@@ -7,7 +7,7 @@ import { Friend } from '@/components/friend';
 import { MaterialIcons } from '@expo/vector-icons';
 
 
-export default function GroupInfo() {
+export default function GroupDetails() {
   const [members, setMembers] = useState<FriendObject[]>([]);
 
   function getGroupMembers(id: string) {

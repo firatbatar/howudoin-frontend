@@ -17,9 +17,9 @@ export default function GroupsLayout() {
         }}
       />
       <Stack.Screen
-        name='group_info'
+        name='group_details'
         options={{
-          title: 'Group Info',
+          title: 'Group Details',
         }}
       />
       <Stack.Screen

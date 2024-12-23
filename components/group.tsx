@@ -26,7 +26,7 @@ export function Group({ group }: GroupProps) {
           marginEnd: 15,
         }}
         onPress={() => {
-          router.push(`/(tabs)/groups/group_info?id=${group.id}&name=${group.name}`);
+          router.push(`/(tabs)/groups/group_details?id=${group.id}&name=${group.name}`);
         }}
       >
         <MaterialIcons name="info" size={24} color="black" />
