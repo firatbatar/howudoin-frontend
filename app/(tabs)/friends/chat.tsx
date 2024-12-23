@@ -8,41 +8,37 @@ import {
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { MessageBubble, MessageInput, Message } from '@/components/messages';
+import { useLocalSearchParams } from 'expo-router';
 
 export default function FriendChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
-  const [userId, setUserId] = useState<string | null>(null);
+  
   const navigation = useNavigation();
   const route = useRoute();
-  const { friendId, friendName } = route.params as { friendId: string; friendName: string };
+  
+  const params = useLocalSearchParams<
+    {
+      id: string
+      name: string 
+    }
+  >();
+
+
+  function fetchMessages() {
+
+  }
 
   useEffect(() => {
-    navigation.setOptions({ title: friendName });
-    loadUserId();
+    // navigation.setOptions({ title: friendName });
+    
     fetchMessages();
+    
     const interval = setInterval(fetchMessages, 5000);
+    
     return () => clearInterval(interval);
   }, []);
-
-
-  const fetchMessages = async () => {
-    try {
-      const token = await AsyncStorage.getItem('userToken');
-      const response = await fetch(`YOUR_API_URL/messages?friendId=${friendId}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      const data = await response.json();
-      setMessages(data);
-    } catch (error) {
-      console.error('Error fetching messages:', error);
-    }
-  };
-
  
-
     try {
       const response = await fetch('YOUR_API_URL/messages/send', {
         method: 'POST',
