@@ -49,6 +49,7 @@ export const Style = StyleSheet.create({
 
 export const Colours = {
   primary: '#007AFF',
+  darkGray: '#333333',
   gray: '#A9A9A9',
   lightGray: '#E5E5EA',
   white: '#FFFFFF',

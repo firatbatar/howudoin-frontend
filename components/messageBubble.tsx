@@ -16,7 +16,17 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
   senderName,
 }) => (
   <View style={styles.messageWrapper}>
-    {senderName && <Text style={styles.senderName}>{senderName}</Text>}
+    {senderName &&
+      <Text
+        style={[
+          styles.senderName,
+          isOwnMessage ? { textAlign: 'right' } : { textAlign: 'left' },
+        ]}
+      >
+        {senderName}
+      </Text>
+    }
+
     <View style={[
       styles.messageBubble,
       isOwnMessage ? styles.ownMessage : styles.otherMessage,
@@ -63,7 +73,7 @@ const styles = StyleSheet.create({
   },
   senderName: {
     fontSize: 12,
-    color: Colours.gray,
+    color: Colours.darkGray,
     marginBottom: 2,
     marginLeft: 5,
   },
