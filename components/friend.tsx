@@ -10,7 +10,7 @@ export function Friend({ friend, showEmail }: FriendProps) {
   return (
     <View style={styles.friend}>
       <Image
-        style={commonStyles.image}
+        style={[commonStyles.image, styles.image]}
         source={require('../assets/images/react-logo.png')}
       />
 
@@ -41,5 +41,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginStart: 10,
     marginEnd: 20,
+  },
+  image: {
+    borderWidth: 1,
   },
 });
