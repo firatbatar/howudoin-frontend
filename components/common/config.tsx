@@ -64,3 +64,12 @@ export type GroupObject = {
   name: string;
   avatar: string;
 }
+
+export const colors = {
+  primary: '#007AFF',
+  gray: '#8E8E93',
+  lightGray: '#E5E5EA',
+  white: '#FFFFFF',
+  black: '#000000',
+  blue: '#0A84FF'
+};
