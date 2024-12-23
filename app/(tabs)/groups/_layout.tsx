@@ -16,6 +16,12 @@ export default function GroupsLayout() {
           title: 'Create Group',
         }}
       />
+      <Stack.Screen
+        name='chat'
+        options={{
+          title: 'Group Chat',
+        }}
+      />
     </Stack>
   );
 }

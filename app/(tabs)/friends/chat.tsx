@@ -9,7 +9,7 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { MessageBubble, MessageInput, Message } from '@/components/messages';
 
-export default function DirectMessageScreen() {
+export default function FriendChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [userId, setUserId] = useState<string | null>(null);

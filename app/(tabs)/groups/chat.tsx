@@ -13,7 +13,7 @@ interface GroupMessage extends Message {
   senderName: string;
 }
 
-export default function GroupMessageScreen() {
+export default function GroupChat() {
   const [messages, setMessages] = useState<GroupMessage[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [userId, setUserId] = useState<string | null>(null);
