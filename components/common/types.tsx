@@ -14,6 +14,7 @@ export type GroupObject = {
 export interface Message {
   id: string;
   sender: string;
+  senderName: string;
   receiver: string;
   content: string;
   timestamp: string;

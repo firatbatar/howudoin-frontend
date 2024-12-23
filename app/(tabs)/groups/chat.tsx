@@ -97,7 +97,7 @@ export default function GroupChat() {
           <MessageBubble
             key={message.id}
             content={message.content}
-            senderName='John Doe'
+            senderName={message.senderName}
             timestamp={new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             isOwnMessage={message.sender === Config.userEmail}
           />
