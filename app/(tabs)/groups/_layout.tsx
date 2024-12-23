@@ -20,7 +20,7 @@ export default function GroupsLayout() {
                 router.replace('/');
               }}
             >
-              <MaterialIcons name="logout" size={24} color="black" />
+              <MaterialIcons name='logout' size={24} color='black' />
             </Pressable>
           ),
         }}
@@ -30,6 +30,12 @@ export default function GroupsLayout() {
         options={{
           title: 'Create Group',
         }}
+      />
+      <Stack.Screen
+        name='chat'
+        options={({ route }) => ({
+          title: route.params?.title,
+        })}
       />
       <Stack.Screen
         name='group_details'

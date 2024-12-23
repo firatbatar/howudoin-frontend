@@ -1,12 +1,16 @@
 import { StyleSheet, ScrollView, Pressable, View, Text } from 'react-native';
-import { Redirect, useFocusEffect, Link } from 'expo-router';
+import { Redirect, useFocusEffect, Link, useRouter } from 'expo-router';
 import { Friend } from '@/components/friend';
 import { useCallback, useState } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-import Config, { commonStyles, FriendObject } from '@/components/common/config';
+import Config from '@/components/common/config';
+import { Style } from '@/components/common/styles';
+import { FriendObject } from '@/components/common/types';
 
 export default function Friends() {
   const [friends, setFriends] = useState<FriendObject[]>([]);
+
+  const router = useRouter();
 
   function getFriends() {
     const requestOptions = {
@@ -70,7 +74,15 @@ export default function Friends() {
         )}
 
         {friends.map((friend) => (
-          <Pressable key={friend.email} onPress={() => {}}>
+          <Pressable
+            key={friend.email}
+            onPress={() => {
+              router.push({
+                pathname: '/(tabs)/friends/chat',
+                params: { title: `${friend.name} ${friend.lastName}` },
+              });
+            }}
+          >
             <Friend
               friend={friend}
               showEmail={false}
@@ -82,7 +94,7 @@ export default function Friends() {
       <Link
         href='/(tabs)/friends/requests'
         asChild
-        style={[styles.float, commonStyles.btn, {width: 'auto'}]}
+        style={[styles.float, Style.btn, {width: 'auto'}]}
       >
         <MaterialIcons
           name='person-add'

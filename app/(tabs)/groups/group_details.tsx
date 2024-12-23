@@ -2,7 +2,8 @@ import { useLocalSearchParams, Link } from 'expo-router';
 import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import Config from '@/components/common/config';
 import { useState } from 'react';
-import { FriendObject, commonStyles } from '@/components/common/config';
+import { FriendObject } from '@/components/common/types';
+import { Style } from '@/components/common/styles';
 import { Friend } from '@/components/friend';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -62,7 +63,7 @@ export default function GroupDetails() {
 
       <Text
         style={[
-          commonStyles.title,
+          Style.title,
           { marginTop: 5 },
         ]}
       >
@@ -86,7 +87,7 @@ export default function GroupDetails() {
       <Link
         href={`/(tabs)/groups/add_member?id=${params.id}&name=${params.name}`}
         asChild
-        style={[styles.float, commonStyles.btn, {width: 'auto'}]}
+        style={[styles.float, Style.btn, {width: 'auto'}]}
       >
         <MaterialIcons
           name='person-add'

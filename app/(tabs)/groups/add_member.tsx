@@ -1,6 +1,7 @@
 import { Pressable, Text, TextInput, View } from 'react-native';
 import { useState } from 'react';
-import Config, { commonStyles } from '@/components/common/config';
+import Config from '@/components/common/config';
+import { Style } from '@/components/common/styles';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
 export default function AddMember() {
@@ -50,14 +51,14 @@ export default function AddMember() {
         alignItems: 'center',
       }}
     >
-      <Text style={commonStyles.title} >Add Member to { params.name }</Text>
+      <Text style={Style.title} >Add Member to { params.name }</Text>
       <TextInput
         placeholder='Email'
-        style={commonStyles.input}
+        style={Style.input}
         value={email}
         onChangeText={setEmail}
       />
-      <Pressable style={commonStyles.btn} onPress={addMember}>
+      <Pressable style={Style.btn} onPress={addMember}>
         <Text>Add</Text>
       </Pressable>
     </View>
