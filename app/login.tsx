@@ -28,6 +28,7 @@ export default function Login() {
         try {
           const data = JSON.parse(result);
           Config.token = data.token;
+          Config.userEmail = email;
           router.replace('/');
         } catch (error) {
           console.error(error);

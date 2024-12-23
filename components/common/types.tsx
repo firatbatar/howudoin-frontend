@@ -10,3 +10,11 @@ export type GroupObject = {
   name: string;
   avatar: string;
 };
+
+export interface Message {
+  id: string;
+  sender: string;
+  receiver: string;
+  content: string;
+  timestamp: string;
+};
