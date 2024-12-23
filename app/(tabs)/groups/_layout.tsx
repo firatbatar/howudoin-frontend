@@ -20,7 +20,7 @@ export default function GroupsLayout() {
                 router.replace('/');
               }}
             >
-              <MaterialIcons name="logout" size={24} color="black" />
+              <MaterialIcons name='logout' size={24} color='black' />
             </Pressable>
           ),
         }}

@@ -10,7 +10,7 @@ export default function FriendsLayout() {
   return (
     <Stack>
       <Stack.Screen
-        name="index"
+        name='index'
         options={{
           title: 'Howudoin - Friends',
           headerRight: () => (
@@ -20,19 +20,19 @@ export default function FriendsLayout() {
                 router.replace('/');
               }}
             >
-              <MaterialIcons name="logout" size={24} color="black" />
+              <MaterialIcons name='logout' size={24} color='black' />
             </Pressable>
           ),
         }}
       />
       <Stack.Screen
-        name="requests"
+        name='requests'
         options={{
           title: 'Friend Requests',
         }}
       />
       <Stack.Screen
-        name="chat"
+        name='chat'
         options={({ route }) => ({
           title: route.params?.title,
         })}

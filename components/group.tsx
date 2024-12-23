@@ -30,7 +30,7 @@ export function Group({ group }: GroupProps) {
           router.push(`/(tabs)/groups/group_details?id=${group.id}&name=${group.name}`);
         }}
       >
-        <MaterialIcons name="info" size={24} color="black" />
+        <MaterialIcons name='info' size={24} color='black' />
       </Pressable>
     </View>
   );

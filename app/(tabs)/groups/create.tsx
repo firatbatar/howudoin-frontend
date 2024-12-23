@@ -99,7 +99,7 @@ export default function GroupRequest() {
       <MultipleSelectList
         setSelected={(val: string[]) => setSelectedFriends(val)}
         data={friends}
-        save="key"
+        save='key'
         label='Members'
         placeholder='Select member to add'
         search={false}
