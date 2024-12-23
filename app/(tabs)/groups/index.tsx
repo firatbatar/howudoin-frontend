@@ -76,10 +76,7 @@ export default function Groups() {
           <Pressable
             key={group.id}
             onPress={() => {
-              router.push({
-                pathname: '/(tabs)/groups/chat',
-                params: { title: group.name },
-              });
+              router.push(`/(tabs)/groups/chat?id=${group.id}&name=${group.name}`);
             }}
           >
             <Group
