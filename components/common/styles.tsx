@@ -1,5 +1,15 @@
 import { StyleSheet } from 'react-native';
 
+export const Colours = {
+  primary: '#007AFF',
+  darkGray: '#333333',
+  gray: '#A9A9A9',
+  lightGray: '#E5E5EA',
+  white: '#FFFFFF',
+  black: '#000000',
+  blue: '#0A84FF',
+};
+
 export const Style = StyleSheet.create({
   input: {
     height: 50,
@@ -12,8 +22,8 @@ export const Style = StyleSheet.create({
   },
   btn: {
     padding: 10,
-    backgroundColor: 'lightgreen',
-    color: 'black',
+    backgroundColor: Colours.blue,
+    color: Colours.white,
 
     borderWidth: 2,
     borderRadius: 5,
@@ -47,12 +57,3 @@ export const Style = StyleSheet.create({
   },
 });
 
-export const Colours = {
-  primary: '#007AFF',
-  darkGray: '#333333',
-  gray: '#A9A9A9',
-  lightGray: '#E5E5EA',
-  white: '#FFFFFF',
-  black: '#000000',
-  blue: '#0A84FF',
-};

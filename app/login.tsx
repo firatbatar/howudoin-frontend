@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Text, View, Pressable, TextInput } from 'react-native';
 import { useRouter, Link } from 'expo-router';
 import Config from '@/components/common/config';
-import { Style } from '@/components/common/styles';
+import { Colours, Style } from '@/components/common/styles';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -70,7 +70,7 @@ export default function Login() {
         />
 
         <Pressable style={Style.btn} onPress={handleLogin}>
-          <Text>Login</Text>
+          <Text style={{ color: Colours.white }}>Login</Text>
         </Pressable>
       </View>
 
