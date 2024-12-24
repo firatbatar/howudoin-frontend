@@ -33,9 +33,9 @@ export default function FriendsLayout() {
       />
       <Stack.Screen
         name='chat'
-        options={({ route }) => ({
-          title: route.params?.title,
-        })}
+        options={{
+          title: 'Friend Chat',
+        }}
       />
     </Stack>
   );

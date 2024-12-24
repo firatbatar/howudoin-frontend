@@ -77,10 +77,7 @@ export default function Friends() {
           <Pressable
             key={friend.email}
             onPress={() => {
-              router.push({
-                pathname: '/(tabs)/friends/chat',
-                params: { title: `${friend.name} ${friend.lastName}` },
-              });
+              router.push(`/(tabs)/friends/chat?id=${friend.email}&name=${friend.name + ' ' + friend.lastName}`);
             }}
           >
             <Friend

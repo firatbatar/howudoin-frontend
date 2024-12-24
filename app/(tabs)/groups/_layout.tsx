@@ -33,9 +33,9 @@ export default function GroupsLayout() {
       />
       <Stack.Screen
         name='chat'
-        options={({ route }) => ({
-          title: route.params?.title,
-        })}
+        options={{
+          title: 'Group Chat',
+        }}
       />
       <Stack.Screen
         name='group_details'
