@@ -12,7 +12,7 @@ export function Friend({ friend, showEmail }: FriendProps) {
     <View style={styles.friend}>
       <Image
         style={[Style.image, styles.image]}
-        source={require('../assets/images/react-logo.png')}
+        source={require('../assets/images/person-placeholder.png')}
       />
 
       <View style={Style.text}>

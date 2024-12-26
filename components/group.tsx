@@ -15,7 +15,7 @@ export function Group({ group }: GroupProps) {
     <View style={styles.group}>
       <Image
         style={[Style.image, styles.image]}
-        source={require('../assets/images/react-logo.png')}
+        source={require('../assets/images/team-placeholder.png')}
       />
 
       <View style={Style.text}>
