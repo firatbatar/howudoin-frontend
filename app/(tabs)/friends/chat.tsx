@@ -37,7 +37,9 @@ export default function FriendChat() {
         result.data.reverse();
         setMessages(result.data);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        // console.error(error);
+      });
   }, [params]);
 
   function sendMessage() {

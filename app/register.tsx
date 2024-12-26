@@ -38,7 +38,9 @@ export default function Register() {
 
         router.replace('/');
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        // console.error(error);
+      });
   }
 
   return (
