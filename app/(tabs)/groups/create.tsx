@@ -39,7 +39,9 @@ export default function GroupRequest() {
 
         router.back();
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        // console.error(error);
+      });
   }
 
   function getFriends() {
@@ -70,7 +72,9 @@ export default function GroupRequest() {
           ]);
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        // console.error(error);
+      });
   }
 
   useFocusEffect(useCallback(() => {

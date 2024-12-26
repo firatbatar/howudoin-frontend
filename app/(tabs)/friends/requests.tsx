@@ -41,7 +41,9 @@ export default function FriendRequest() {
           }]);
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        // console.error(error);
+      });
   }
 
   function acceptFriendRequest() {
@@ -62,7 +64,9 @@ export default function FriendRequest() {
           alert(result.message);
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        // console.error(error);
+      });
 
     router.replace('/(tabs)/friends/requests');
   }
@@ -92,7 +96,9 @@ export default function FriendRequest() {
           alert(result.message);
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        // console.error(error);
+      });
   }
 
   useFocusEffect(useCallback(() => {

@@ -36,7 +36,9 @@ export default function Login() {
           return;
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        // console.error(error);
+      });
   }
 
   return (

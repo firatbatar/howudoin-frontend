@@ -40,7 +40,9 @@ export default function AddMember() {
           alert(result.message);
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        // console.error(error);
+      });
   }
 
   return (
